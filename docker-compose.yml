@@ -1,0 +1,20 @@
+version: '3'
+services:
+  notebook:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: jupyter-book:${TAG:-latest}
+    volumes:
+      - ${HOST_DIR}:/home/jovyan/work
+      - ${CERT_DIR}:/etc/ssl/notebook
+    user: 'root'
+    environment:
+      JUPYTER_ENABLE_LAB: 'yes'
+      GRANT_SUDO: 'yes'
+    ports:
+      - 8889:8888
+    command: "start-notebook.sh \
+              --NotebookApp.password=${PASSWD} \
+              --NotebookApp.certfile=/etc/ssl/notebook/mycert.pem \
+              --NotebookApp.keyfile=/etc/ssl/notebook/mykey.key"
