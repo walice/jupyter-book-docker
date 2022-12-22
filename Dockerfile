@@ -19,6 +19,9 @@ RUN chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
 
+# Upgrade Jupyter install
+RUN pip install --upgrade jupyter
+
 # Jupyter notebook extensions
 RUN \
     pip install jupyter_contrib_nbextensions && \
