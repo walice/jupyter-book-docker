@@ -20,12 +20,13 @@ RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 # Upgrade Jupyter install
-RUN pip install --upgrade jupyter jupyter-core jupyter-console
+#RUN pip install --upgrade jupyter jupyter-core jupyter-console
 
 # Jupyter notebook extensions
 RUN \
-    pip install jupyter_contrib_nbextensions && \
-    jupyter contrib nbextension install --sys-prefix && \
+    pip install export_embedded/main --sys-prefix && \
+    #pip install jupyter_contrib_nbextensions && \
+    #jupyter contrib nbextension install --sys-prefix && \
     jupyter nbextension enable export_embedded/main --sys-prefix
 
 RUN jupyter nbextensions_configurator enable --sys-prefix
