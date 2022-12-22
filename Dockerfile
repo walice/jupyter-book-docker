@@ -20,7 +20,7 @@ RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 # Upgrade Jupyter install
-RUN pip install --upgrade jupyter jupyter-core jupyter-console
+RUN pip install --upgrade jupyter jupyter-core jupyter-console pyzmq tornado
 
 # Jupyter notebook extensions
 RUN \
