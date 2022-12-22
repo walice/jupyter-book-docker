@@ -24,10 +24,11 @@ USER ${NB_USER}
 
 # Jupyter notebook extensions
 RUN \
-    pip install export_embedded/main && \
-    #pip install jupyter_contrib_nbextensions && \
-    #jupyter contrib nbextension install --sys-prefix && \
-    jupyter nbextension enable export_embedded/main --sys-prefix
+    pip install jupyter_contrib_nbextensions
+
+RUN jupyter contrib nbextension install --sys-prefix
+
+RUN jupyter nbextension enable export_embedded/main --sys-prefix
 
 RUN jupyter nbextensions_configurator enable --sys-prefix
 
